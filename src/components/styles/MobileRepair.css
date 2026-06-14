@@ -1,0 +1,202 @@
+/* Reset some default styles */
+body, p, h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Container Styles */
+.mobile-repair-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Hero Section Styles */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  /* background-image: url('../images/back.jpg'); */
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+}
+
+.hero-title {
+  background-color: #7390d1f0;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  border: 1px solid black;
+  
+}
+
+.hero-description {
+  color: black;
+  background-color: #7390d1f0;
+  margin-bottom: 2rem;
+  border: 1px solid black;
+}
+
+/* Services Section Styles */
+/* Services Section Styles */
+.services {
+  background-color: #f9f9f9;
+  padding: 3rem 0;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.service {
+  width: 30%;
+  padding: 2rem;
+  border-radius: 10px;
+  margin: 5rem;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.9s ease;
+  background-color: aliceblue;
+}
+
+.service:hover {
+  transform: scale(1.05); /* Enlarge on hover */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  background-color: #1579e557; /* Change background color on hover */
+}
+
+.service-icon {
+  font-size: 3rem;
+  color: #007bff;
+  margin-bottom: 1rem;
+}
+
+.service-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.service-description {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Call to Action Styles */
+.cta {
+  background-color: #ff8c00;
+  color: #fff;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.cta-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cta-description {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  background-color: #fff;
+  color: #ff8c00;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #ff6700; /* Darker orange on hover */
+}
+/* Contact Section Styles */
+.contact-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 30vh; /* Center vertically in the viewport */
+}
+
+.contact {
+  text-align: center;
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%; /* Ensure the contact section takes the full width */
+}
+
+.contact h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.contact p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.contact a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}
+
+.contact img {
+  vertical-align: middle;
+  margin-right: 8px;
+  height: 20px;
+}
+/* CTA Section Styles */
+.cta {
+  background-color: #007bff; /* Background color for the CTA section */
+  color: #fff; /* Text color for the CTA section */
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.cta-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.cta-description {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  background-color: #fff; /* Button background color */
+  color: #007bff; /* Button text color */
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}

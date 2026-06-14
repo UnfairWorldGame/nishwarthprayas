@@ -1,0 +1,78 @@
+/* Define a base font size for responsive design */
+html {
+  font-size: 16px; /* You can adjust this base font size as needed */
+}
+
+/* Header styles for all screen sizes */
+.header {
+  background-color: rgb(10 92 131);
+  border-bottom: 1px solid rgb(49, 36, 2);
+  min-height: 3.125rem; /* 50px in rem units */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.25rem; /* 20px in rem units */
+  position: sticky;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.header ul li {
+  text-transform: uppercase;
+  margin-left: 1.25rem; /* 20px in rem units */
+  letter-spacing: 0.1875rem; /* 3px in rem units */
+}
+
+.header a,
+.header button.login-button,
+.header button.logout-button {
+  color: rgb(245, 178, 10);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.1875rem;
+  padding: 0;
+}
+
+.header a:hover,
+.header button.login-button:hover,
+.header button.logout-button:hover {
+  color: #33b5e5;
+}
+
+/* Add padding to content to push it below the header */
+.content {
+  padding-top: 3.75rem; /* 60px in rem units - Adjust this value as needed */
+}
+
+/* Media query for screens with a maximum width of 480 pixels (e.g., smartphones) */
+@media screen and (max-width: 30rem) {
+  /* 480px in rem units */
+  .header {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .header ul {
+    flex-direction: column;
+  }
+
+  .header ul li {
+    margin-left: 0;
+    margin-bottom: 0.625rem; /* 10px in rem units */
+  }
+}

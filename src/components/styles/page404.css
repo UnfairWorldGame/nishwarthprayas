@@ -1,0 +1,117 @@
+/* styles.css */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  /* 404 Page styles */
+  main {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding: 6rem 1.5rem;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-indigo-600 {
+    color: #4f46e5;
+  }
+  
+  .text-gray-900 {
+    color: #1f2937;
+  }
+  
+  .text-gray-600 {
+    color: #6b7280;
+  }
+  
+  .font-semibold {
+    font-weight: 600;
+  }
+  
+  .text-base {
+    font-size: 1rem;
+  }
+  
+  .text-3xl {
+    font-size: 1.5rem;
+  }
+  
+  .text-5xl {
+    font-size: 3rem;
+  }
+  
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  
+  .mt-6 {
+    margin-top: 1.5rem;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .flex-row {
+    flex-direction: row;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .gap-x-6 {
+    column-gap: 1.5rem;
+  }
+  
+  .rounded-md {
+    border-radius: 0.375rem;
+  }
+  
+  .bg-indigo-600 {
+    background-color: #8898e8;
+  }
+  
+  .bg-indigo-500:hover {
+    background-color: #4338ca;
+  }
+  
+ 
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  
+  .font-semibold {
+    font-weight: 600;
+  }
+  
+  .text-white {
+    color: #ffffff;
+  }
+  
+  .shadow-sm {
+    /* Your shadow styles here */
+  }
+  
+  /* Media query for small screens */
+  
+  

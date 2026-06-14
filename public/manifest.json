@@ -1,0 +1,18 @@
+{
+  "short_name": "निस्वार्थ प्रयास",
+  "name": "निस्वार्थ प्रयास | एक कदम मानवता की ओर",
+  "icons": [
+    {
+      "src": "https://farrukhabadngo.com/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "description": "NGOName is dedicated to improving lives and communities through various initiatives and support. Join us in making a positive impact and bringing change. Serving [Location], [Region]. Get involved today!",
+  "keywords": "NGO, Community Empowerment, Social Welfare, Support, Volunteer, Impact, Change, Location, Region, Involvement, Charity, Service, Contribution, Humanity, Welfare",
+  "author": "NGOName"
+}

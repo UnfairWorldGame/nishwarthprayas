@@ -1,0 +1,58 @@
+/* Styles for the Sell & Buy Section */
+.sell-buy-section {
+    background-color: #f5f5f5; /* Background color for the section */
+    padding: 40px; /* Add padding to the section */
+    text-align: center; /* Center-align content */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+  }
+  
+  .sell-buy-section:hover {
+    background-color: #e0e0e0; /* Background color on hover */
+  }
+  
+  .sell-buy-section h2 {
+    font-size: 28px; /* Font size for the section title */
+    font-weight: 600; /* Font weight for the section title */
+    margin-bottom: 20px; /* Margin at the bottom of the title */
+    color: #333; /* Text color for the title */
+  }
+  
+  .sell-buy-section p {
+    font-size: 18px; /* Font size for the section paragraphs */
+    line-height: 1.6; /* Line height for better readability */
+    color: #555; /* Text color for the paragraphs */
+    margin-bottom: 20px; /* Margin at the bottom of each paragraph */
+  }
+  
+  /* Styles for the Contact Card */
+  .contact-container {
+    background-color: #fff; /* Background color for the contact card */
+    padding: 20px; /* Padding inside the contact card */
+    border-radius: 5px; /* Rounded corners for the contact card */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to the contact card */
+  }
+  
+  .contact h1 {
+    font-size: 24px; /* Font size for the contact card title */
+    font-weight: 600; /* Font weight for the contact card title */
+    margin-bottom: 20px; /* Margin at the bottom of the title */
+    color: #333; /* Text color for the title */
+  }
+  
+  .contact p {
+    font-size: 18px; /* Font size for the contact card text */
+    color: #555; /* Text color for the text */
+    margin-bottom: 10px; /* Margin at the bottom of each text element */
+  }
+  
+  .contact-email a {
+    color: #ff5722; /* Link color */
+    text-decoration: none; /* Remove underline from links */
+    font-weight: 600; /* Font weight for links */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+  }
+  
+  .contact-email a:hover {
+    color: #ff4500; /* Link color on hover */
+  }
+  
