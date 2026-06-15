@@ -6,11 +6,15 @@ const app = express();
 require("dotenv").config(); // Load variables from .env file
 
 const corsOptions = {
-  origin: [
-    "https://farrukhabadngo.com",
-    "http://localhost:3000",
-    "http://localhost:3001",
-  ],
+  origin: process.env.CORS_ORIGINS
+    ? process.env.CORS_ORIGINS.split(",").map((o) => o.trim())
+    : [
+        "https://farrukhabadngo.com",
+        "https://www.farrukhabadngo.com",
+        "http://localhost:3000",
+        "http://localhost:3001",
+      ],
+  credentials: true,
 };
 app.use(cors(corsOptions));
 app.use("/uploads", express.static("uploads")); // Serve static files from the 'uploads' directory
@@ -32,9 +36,11 @@ db.once("open", () => {
 // Routes
 const uploadRoutes = require("./uploadHandler");
 const imageRoutes = require("./imageRoutes");
+const donateRoutes = require("./donateRoutes");
 
 app.use("/upload", uploadRoutes);
 app.use("/images", imageRoutes);
+app.use("/donate", donateRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

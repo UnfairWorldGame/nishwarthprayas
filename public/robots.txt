@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin-page
+Disallow: /admin-page-login
+Disallow: /login-page
+
+Sitemap: https://farrukhabadngo.com/sitemap.xml

@@ -13,7 +13,8 @@ import a3 from "./images/g2.jpeg";
 import facebook from "./images/fac.jpg";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import Seo from "./Seo";
+import { PAGE_SEO } from "./seoConfig";
 import config from "./config";
 import { useInView } from "./hooks/useInView";
 import AnimatedCounter from "./AnimatedCounter";
@@ -144,25 +145,71 @@ const Homepage = () => {
   const [expandedFAQs, setExpandedFAQs] = useState({});
   const [images, setImages] = useState([]);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [slidesToShow, setSlidesToShow] = useState(1);
   const [statsRef, statsInView] = useInView({ threshold: 0.3 });
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const resetHorizontalScroll = () => {
+      if (window.scrollX !== 0) {
+        window.scrollTo(0, window.scrollY);
+      }
+      document.documentElement.scrollLeft = 0;
+      document.body.scrollLeft = 0;
+    };
+
+    resetHorizontalScroll();
+    window.addEventListener("load", resetHorizontalScroll);
+    window.addEventListener("resize", resetHorizontalScroll);
+
+    return () => {
+      window.removeEventListener("load", resetHorizontalScroll);
+      window.removeEventListener("resize", resetHorizontalScroll);
+    };
   }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(`${SERVER_URL}/images`);
-        if (response.ok) {
-          setImages(await response.json());
+        const contentType = response.headers.get("content-type") || "";
+        if (!response.ok || !contentType.includes("application/json")) {
+          return;
         }
+        setImages(await response.json());
       } catch (error) {
         console.error("Error fetching images:", error);
       }
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const updateSlides = () => {
+      const width = window.innerWidth;
+      if (width >= 1024) setSlidesToShow(4);
+      else if (width >= 768) setSlidesToShow(3);
+      else if (width >= 480) setSlidesToShow(2);
+      else setSlidesToShow(1);
+    };
+
+    updateSlides();
+    window.addEventListener("resize", updateSlides);
+    return () => window.removeEventListener("resize", updateSlides);
+  }, []);
+
+  useEffect(() => {
+    const resetHorizontalScroll = () => {
+      if (window.scrollX !== 0) {
+        window.scrollTo(0, window.scrollY);
+      }
+      document.documentElement.scrollLeft = 0;
+      document.body.scrollLeft = 0;
+    };
+
+    resetHorizontalScroll();
+    const timer = setTimeout(resetHorizontalScroll, 150);
+    return () => clearTimeout(timer);
+  }, [slidesToShow]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -183,40 +230,22 @@ const Homepage = () => {
     dots: true,
     infinite: true,
     speed: 600,
-    slidesToShow: 4,
+    slidesToShow,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3500,
     pauseOnHover: true,
     cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
-    responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 3 } },
-      { breakpoint: 768, settings: { slidesToShow: 2 } },
-      { breakpoint: 480, settings: { slidesToShow: 1 } },
-    ],
+    variableWidth: false,
+    adaptiveHeight: false,
   };
 
   return (
     <div className="homepage">
-      <Helmet>
-        <title>निस्वार्थ प्रयास | एक कदम मानवता की ओर</title>
-        <meta
-          name="description"
-          content="Ngo in farrukhabad,ngo in kanpur,ngo in uttarpradesh,farrukhabad ngo, ngo in UP, ngo"
-        />
-        <meta
-          property="og:title"
-          content="NiswarthPrays: Helping the needy in Farrukhabad and Kanpur"
-        />
-        <meta
-          property="og:description"
-          content="NiswarthPrays is a non-profit organization that provides food, shelter, and education to the needy in Farrukhabad and Kanpur, India."
-        />
-        <meta
-          property="og:image"
-          content="https://farrukhabadngo.com/fevicon.ico"
-        />
-      </Helmet>
+      <Seo
+        {...PAGE_SEO.home}
+        includeOrgSchema
+      />
 
       <div
         className="scroll-progress"
@@ -299,10 +328,9 @@ const Homepage = () => {
           <p>2014 से आज तक — समाज सेवा का सफर</p>
         </ScrollReveal>
         <div className="timeline-track">
-          {NGO_TIMELINE.map((item, i) => (
-            <ScrollReveal
+          {NGO_TIMELINE.map((item) => (
+            <div
               key={item.year}
-              delay={i * 70}
               className={`timeline-item ${item.highlight ? "timeline-item--highlight" : ""}`}
             >
               <div className="timeline-marker">
@@ -312,7 +340,7 @@ const Homepage = () => {
                 <span className="timeline-year">{item.year}</span>
                 <p>{item.text}</p>
               </div>
-            </ScrollReveal>
+            </div>
           ))}
         </div>
       </section>
@@ -350,15 +378,17 @@ const Homepage = () => {
           <p>हमारे सामाजिक कार्यों की झलक</p>
         </ScrollReveal>
         <ScrollReveal delay={150}>
-          <Slider {...sliderSettings}>
-            {galleryImages.map((img, index) => (
-              <div key={index} className="gallery-slide">
-                <div className="gallery-frame">
-                  <img src={img} alt={`NGO work ${index + 1}`} loading="lazy" />
+          <div className="gallery-slider-wrap">
+            <Slider key={slidesToShow} {...sliderSettings}>
+              {galleryImages.map((img, index) => (
+                <div key={index} className="gallery-slide">
+                  <div className="gallery-frame">
+                    <img src={img} alt={`NGO work ${index + 1}`} loading="lazy" />
+                  </div>
                 </div>
-              </div>
-            ))}
-          </Slider>
+              ))}
+            </Slider>
+          </div>
         </ScrollReveal>
       </section>
 

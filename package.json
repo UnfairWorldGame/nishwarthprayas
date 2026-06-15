@@ -2,6 +2,7 @@
   "name": "repairtechies",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://nishwarthprayas.onrender.com",
   "dependencies": {
     "@auth0/auth0-react": "^2.2.3",
     "@headlessui/react": "^1.7.17",

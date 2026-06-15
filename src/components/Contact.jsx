@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
+import Seo from "./Seo";
+import { PAGE_SEO } from "./seoConfig";
 import "./styles/contact.css";
 import whatsappIcon from "./images/whatsapplogo.png";
 import facebookIcon from "./images/fac.jpg";
@@ -43,6 +44,8 @@ function Contact() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.documentElement.scrollLeft = 0;
+    document.body.scrollLeft = 0;
   }, []);
 
   const handleSubmit = (e) => {
@@ -81,25 +84,7 @@ function Contact() {
 
   return (
     <div className="contact-page">
-      <Helmet>
-        <title>Contact Us | निस्वार्थ प्रयास</title>
-        <meta
-          name="description"
-          content="Contact Nishwarthaprayas NGO in Farrukhabad, Uttar Pradesh. Call, WhatsApp, or send a message to join our social service initiatives."
-        />
-        <meta
-          property="og:title"
-          content="Contact Nishwarthaprayas NGO — Farrukhabad & Kanpur"
-        />
-        <meta
-          property="og:description"
-          content="Reach out to Nishwarthaprayas for volunteering, donations, or community support in Farrukhabad and Kanpur."
-        />
-        <meta
-          property="og:image"
-          content="https://farrukhabadngo.com/fevicon.ico"
-        />
-      </Helmet>
+      <Seo {...PAGE_SEO.contact} />
 
       {/* Hero */}
       <section className="contact-hero">

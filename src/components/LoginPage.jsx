@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Navigate } from "react-router-dom";
+import Seo from "./Seo";
 import "./styles/adminpage.css";
 
 const LoginPage = () => {
@@ -20,6 +21,13 @@ const LoginPage = () => {
 
   return (
     <div className="admin-page">
+      <Seo
+        title="Login"
+        description="Admin login for Nishwarth Prayas NGO."
+        path="/login-page"
+        noindex
+        keywords=""
+      />
       <section className="admin-hero">
         <div className="admin-hero-inner">
           <span className="admin-badge">Admin Access</span>

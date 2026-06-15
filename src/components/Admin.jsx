@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Helmet } from "react-helmet";
+import Seo from "./Seo";
 import axios from "axios";
 import "./styles/adminpage.css";
 import ImageUploader from "./ImageUploader";
@@ -99,9 +99,13 @@ function Admin() {
 
   return (
     <div className="admin-page">
-      <Helmet>
-        <title>Admin Dashboard | निस्वार्थ प्रयास</title>
-      </Helmet>
+      <Seo
+        title="Admin Dashboard"
+        description="Private admin area for Nishwarth Prayas NGO."
+        path="/admin-page"
+        noindex
+        keywords=""
+      />
 
       <section className="admin-hero">
         <div className="admin-hero-inner">

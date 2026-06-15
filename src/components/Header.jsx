@@ -1,72 +1,131 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet"; // Import Helmet from the react-helmet library
-
-import "../components/styles/header.css";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { HEADER_NAV, ROUTES, isNavPathActive } from "./navConfig";
+import "./styles/header.css";
 
 function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    if (menuOpen) {
+      window.addEventListener("keydown", onKeyDown);
+    }
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
+
+  const renderLink = (route) => {
+    const active = isNavPathActive(location.pathname, route);
+    return (
+      <li key={route.path}>
+        <Link
+          to={route.path}
+          onClick={closeMenu}
+          className={[
+            route.cta ? "nav-link--cta" : "",
+            active ? "is-active" : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+          aria-current={active ? "page" : undefined}
+        >
+          {route.label}
+        </Link>
+      </li>
+    );
+  };
+
   return (
-    <div className="div1">
-      <Helmet>
-        <title>निस्वार्थ प्रयास | एक कदम मानवता की ओर</title>
-        <meta
-          name="description"
-          content="Ngo in farrukhabad,ngo in kanpur,ngo in uttarpradesh,farrukhabad ngo, ngo in UP, ngo"
-        />
-        <meta
-          property="og:title"
-          content="NiswarthPrays: Helping the needy in Farrukhabad and Kanpur Ngo in farrukhabad kanpur,farrukhabad ngo in uttarpradesh ngo in UP ngo"
-        />
-        <meta
-          property="og:description"
-          content="NiswarthPrays is a non-profit organization that provides food, shelter, and education to the needy in Farrukhabad and Kanpur, India.Ngo in farrukhabad kanpur,farrukhabad ngo in uttarpradesh ngo in UP ngo"
-        />
-        <meta
-          property="og:image"
-          content="https://farrukhabadngo.com/fevicon.ico"
-        />
-      </Helmet>
+    <header className="site-header">
+      <nav className="site-nav" aria-label="Main navigation">
+        <div className="header-inner">
+          <div className="header-bar">
+            <Link to="/" className="header-brand" onClick={closeMenu}>
+              <span className="header-brand-mark" aria-hidden="true">
+                ✦
+              </span>
+              <span className="header-brand-text">Nishwarth Prayas</span>
+            </Link>
 
-      <nav>
-        <div className="header">
-          <ul>
-            <li style={{ fontSize: "1rem", fontWeight: "bold" }}>
-              <Link to={"/"}>Nishwartha Prayas</Link>
-            </li>
+            <button
+              type="button"
+              className={`nav-toggle${menuOpen ? " is-active" : ""}`}
+              aria-expanded={menuOpen}
+              aria-controls="main-nav-menu"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              onClick={() => setMenuOpen((open) => !open)}
+            >
+              <span className="nav-toggle-bar" />
+              <span className="nav-toggle-bar" />
+              <span className="nav-toggle-bar" />
+            </button>
+          </div>
 
-            {/* <li>
-            <Link to={"/temp"}>TestingPage</Link>
-          </li> */}
-            {/* <li>
-            <Link to={"/online-mobile-repair"}>Mobile-Repair</Link>
-          </li>
-          */}
-
-            <li>
-              <Link to={"/ngo-service-page"}>NGO-Work</Link>
-            </li>
-            <li>
-              <Link to={"/ngo-family-page"}>NGO-Family</Link>
-            </li>
-            <li>
-              <Link to={"/ngo-latest-news-blog"}>News</Link>
-            </li>
-            <li>
-              <Link to={"/india-ngo-about"}>About</Link>
-            </li>
-            <li>
-              <Link to={"/ngo-blog"}>BLog</Link>
-            </li>
-            <li>
-              <Link to={"/india-ngo-contact"}>Contact</Link>
-            </li>
-            {/* <li>
-              <Link to={"/ngo-ai-chat-bot"}>Chat-bot</Link>
-            </li> */}
+          {/* Desktop inline nav */}
+          <ul id="main-nav-menu" className="header-nav header-nav--desktop">
+            {HEADER_NAV.map(renderLink)}
           </ul>
         </div>
       </nav>
-    </div>
+
+      {/* Mobile slide-out drawer */}
+      <div
+        className={`mobile-nav-panel${menuOpen ? " is-open" : ""}`}
+        aria-hidden={!menuOpen}
+      >
+        <div className="mobile-nav-header">
+          <span className="mobile-nav-title">Menu</span>
+          <button
+            type="button"
+            className="mobile-nav-close"
+            aria-label="Close menu"
+            onClick={closeMenu}
+          >
+            ✕
+          </button>
+        </div>
+        <ul className="header-nav header-nav--mobile">
+          <li>
+            <Link
+              to={ROUTES.home.path}
+              onClick={closeMenu}
+              className={isNavPathActive(location.pathname, ROUTES.home) ? "is-active" : ""}
+              aria-current={
+                isNavPathActive(location.pathname, ROUTES.home) ? "page" : undefined
+              }
+            >
+              {ROUTES.home.label}
+            </Link>
+          </li>
+          {HEADER_NAV.map(renderLink)}
+        </ul>
+      </div>
+
+      <button
+        type="button"
+        className={`nav-overlay${menuOpen ? " is-visible" : ""}`}
+        aria-label="Close menu"
+        aria-hidden={!menuOpen}
+        tabIndex={menuOpen ? 0 : -1}
+        onClick={closeMenu}
+      />
+    </header>
   );
 }
 

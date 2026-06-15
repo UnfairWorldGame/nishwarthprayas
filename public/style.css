@@ -1,4 +1,51 @@
+/* Mobile-first global base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-.body{
-    font-family: 'Mooli', sans-serif;
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Mooli", sans-serif;
+  line-height: 1.5;
+  color: #1a2b3c;
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+/* Natural height only for standalone content images */
+p img,
+article > img,
+.about-summary img {
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
 }

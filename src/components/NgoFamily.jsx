@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import Seo from "./Seo";
+import { PAGE_SEO } from "./seoConfig";
 import "./styles/ngofamily.css";
 import config from "./config";
 import { useInView } from "./hooks/useInView";
@@ -113,6 +114,8 @@ const NgoFamily = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.documentElement.scrollLeft = 0;
+    document.body.scrollLeft = 0;
   }, []);
 
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
@@ -144,13 +147,7 @@ const NgoFamily = () => {
 
   return (
     <div className="ngo-family-page">
-      <Helmet>
-        <title>NGO Family | निस्वार्थ प्रयास</title>
-        <meta
-          name="description"
-          content="Meet the Nishwarthaprayas NGO family — volunteers and community members working together for social change in Farrukhabad, Uttar Pradesh."
-        />
-      </Helmet>
+      <Seo {...PAGE_SEO.family} />
 
       {/* Hero */}
       <section className="family-hero">
@@ -292,24 +289,23 @@ const NgoFamily = () => {
         </Reveal>
         <div className="photo-grid">
           {photos.map((photo, index) => (
-            <Reveal key={index} delay={(index % 4) * 60}>
-              <button
-                type="button"
-                className="photo-card"
-                onClick={() => setLightboxIndex(index)}
-                aria-label={`View family moment ${index + 1}`}
-              >
-                <img
-                  src={photo}
-                  alt={`Nishwarthaprayas family moment ${index + 1}`}
-                  loading="lazy"
-                />
-                <span className="photo-overlay">
-                  <span className="photo-zoom">🔍 देखें</span>
-                  <span className="photo-number">{index + 1} / {photos.length}</span>
-                </span>
-              </button>
-            </Reveal>
+            <button
+              key={index}
+              type="button"
+              className="photo-card"
+              onClick={() => setLightboxIndex(index)}
+              aria-label={`View family moment ${index + 1}`}
+            >
+              <img
+                src={photo}
+                alt={`Nishwarthaprayas family moment ${index + 1}`}
+                loading="lazy"
+              />
+              <span className="photo-overlay">
+                <span className="photo-zoom">🔍 देखें</span>
+                <span className="photo-number">{index + 1} / {photos.length}</span>
+              </span>
+            </button>
           ))}
         </div>
       </section>

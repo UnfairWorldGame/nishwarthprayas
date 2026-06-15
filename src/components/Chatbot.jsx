@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import config from "./config";
+import Seo from "./Seo";
+import { PAGE_SEO } from "./seoConfig";
 
 const Chatbot = () => {
   const [question, setQuestion] = useState("");
@@ -44,6 +46,7 @@ const Chatbot = () => {
 
   return (
     <div className="p-4">
+      <Seo {...PAGE_SEO.chatbot} />
       <form onSubmit={handleQuestionSubmit} className="mb-4">
         <input
           type="text"

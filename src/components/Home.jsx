@@ -23,7 +23,8 @@ import a3 from "./images/g2.jpeg";
 
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import Seo from "./Seo";
+import { PAGE_SEO } from "./seoConfig";
 import config from "./config";
 
 const Home = () => {
@@ -108,13 +109,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Helmet>
-        <title>निस्वार्थ प्रयास | एक कदम मानवता की ओर.</title>
-        <meta
-          name="description"
-          content="In the vibrant tapestry of India's non-profit organizations and the social welfare sector, the NGO landscape embodies a multitude of charitable organizations and Indian NGOs, working tirelessly as non-governmental organizations. Their pivotal contributions span diverse realms, addressing pressing issues such as education in India, women's empowerment, rural development, healthcare initiatives, and environmental conservation. These dedicated entities drive urban development projects and foster rural empowerment, making their impact felt in North and South India through state-specific initiatives, including Karnataka NGOs and Maharashtra NGOs. Their services and programs encompass education support, health and sanitation projects, vocational training initiatives, and community development efforts. They remain steadfast in disaster relief activities and skill development programs, forming partnerships that extend to government, corporate social responsibility (CSR), international NGOs, and community alliances. Collaborative networks, including philanthropic partnerships, drive concerted efforts for poverty alleviation across the nation"
-        />
-      </Helmet>
+      <Seo {...PAGE_SEO.home} />
        {/* connect card */}
        <div className="contact-container">
         <section className="contact">

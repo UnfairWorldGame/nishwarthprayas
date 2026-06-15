@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./styles/footer.css";
 import whatsappIcon from "./images/whatsapplogo.png";
 import config from "./config";
+import { FOOTER_NAV, ROUTES } from "./navConfig";
 
 const FOOTER_STATS = [
   { value: "12+", label: "वर्षों की सेवा" },
@@ -11,22 +12,16 @@ const FOOTER_STATS = [
   { value: "2", label: "शहर — फर्रुखाबाद व कानपुर" },
 ];
 
-const QUICK_LINKS = [
-  { to: "/", label: "Home" },
-  { to: "/india-ngo-about", label: "About Us" },
-  { to: "/ngo-service-page", label: "NGO Work" },
-  { to: "/ngo-family-page", label: "NGO Family" },
-  { to: "/ngo-latest-news-blog", label: "News" },
-  { to: "/ngo-blog", label: "Blog" },
-  { to: "/online-connectus", label: "Join Us" },
-  { to: "/india-ngo-contact", label: "Contact" },
-];
+const QUICK_LINKS = FOOTER_NAV.map((route) => ({
+  to: route.path,
+  label: route.label,
+}));
 
 const PROGRAMS = [
-  { to: "/ngo-service-page", icon: "📚", label: "मुफ्त कोचिंग" },
-  { to: "/ngo-service-page", icon: "🤝", label: "आपातकालीन सहायता" },
-  { to: "/ngo-service-page", icon: "💪", label: "महिला सशक्तिकरण" },
-  { to: "/ngo-service-page", icon: "🌾", label: "ग्रामीण विकास" },
+  { to: ROUTES.services.path, icon: "📚", label: "मुफ्त कोचिंग" },
+  { to: ROUTES.services.path, icon: "🤝", label: "आपातकालीन सहायता" },
+  { to: ROUTES.services.path, icon: "💪", label: "महिला सशक्तिकरण" },
+  { to: ROUTES.services.path, icon: "🌾", label: "ग्रामीण विकास" },
 ];
 
 const SOCIAL_LINKS = [
@@ -78,7 +73,10 @@ function Footer() {
             <p>समाज सेवा में अपना योगदान दें — स्वयंसेवक बनें या सहयोग करें</p>
           </div>
           <div className="footer-cta-actions">
-            <Link to="/online-connectus" className="footer-btn footer-btn--primary">
+            <Link to="/ngo-donate" className="footer-btn footer-btn--primary">
+              दान करें
+            </Link>
+            <Link to="/online-connectus" className="footer-btn footer-btn--outline">
               हमसे जुड़ें
             </Link>
             <a

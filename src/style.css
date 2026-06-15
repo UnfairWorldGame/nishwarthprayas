@@ -4,3 +4,105 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+/* App-wide mobile-first helpers */
+.app-shell {
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+}
+
+.app-main {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.homepage section {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Contain slick so wide track never expands the page */
+.gallery-slider-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-slider-wrap .slick-slider {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.gallery-slider-wrap .slick-list {
+  overflow: hidden !important;
+  width: 100% !important;
+  max-width: 100%;
+}
+
+.gallery-slider-wrap .slick-track {
+  display: flex !important;
+}
+
+.gallery-slider-wrap .slick-slide {
+  float: none;
+  height: auto;
+}
+
+.gallery-slider-wrap .slick-slide > div {
+  width: 100%;
+}
+.service-image-wrap img,
+.highlight-image-wrap img,
+.leader-image-wrap img,
+.about-team-image-wrap img,
+.gallery-frame img,
+.service-card-image img,
+.photo-card img,
+.news-card-image-wrap img,
+.media-cover {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.service-image-wrap,
+.highlight-image-wrap,
+.leader-image-wrap,
+.about-team-image-wrap,
+.gallery-frame,
+.service-card-image,
+.photo-card,
+.news-card-image-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Slick carousel must not overflow viewport */
+.slick-slider {
+  max-width: 100%;
+  touch-action: pan-y;
+}
+
+.slick-list {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.slick-slide > div {
+  width: 100%;
+}
+
+.slick-slide img {
+  max-width: 100%;
+}
+
+/* Responsive cover images in cards and galleries */

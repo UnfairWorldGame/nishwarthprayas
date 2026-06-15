@@ -1,78 +1,355 @@
-/* Define a base font size for responsive design */
-html {
-  font-size: 16px; /* You can adjust this base font size as needed */
-}
-
-/* Header styles for all screen sizes */
-.header {
-  background-color: rgb(10 92 131);
-  border-bottom: 1px solid rgb(49, 36, 2);
-  min-height: 3.125rem; /* 50px in rem units */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1.25rem; /* 20px in rem units */
+/* Site header / navbar */
+.site-header {
   position: sticky;
-  width: 100%;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 1000;
+  width: 100%;
 }
 
-.header ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.site-nav {
+  width: 100%;
+}
+
+.header-inner {
+  background-color: #0a5c83;
+  border-bottom: 1px solid rgba(245, 178, 10, 0.25);
+  position: relative;
+}
+
+.header-bar {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 3.25rem;
+  padding: 0.65rem 1rem;
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
 }
 
-.header ul li {
-  text-transform: uppercase;
-  margin-left: 1.25rem; /* 20px in rem units */
-  letter-spacing: 0.1875rem; /* 3px in rem units */
-}
-
-.header a,
-.header button.login-button,
-.header button.logout-button {
-  color: rgb(245, 178, 10);
+.header-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #f5b20a;
   text-decoration: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font: inherit;
-  text-transform: uppercase;
-  letter-spacing: 0.1875rem;
-  padding: 0;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  flex: 1;
+  min-width: 0;
 }
 
-.header a:hover,
-.header button.login-button:hover,
-.header button.logout-button:hover {
+.header-brand:hover {
   color: #33b5e5;
 }
 
-/* Add padding to content to push it below the header */
-.content {
-  padding-top: 3.75rem; /* 60px in rem units - Adjust this value as needed */
+.header-brand-mark {
+  font-size: 0.9rem;
+  flex-shrink: 0;
 }
 
-/* Media query for screens with a maximum width of 480 pixels (e.g., smartphones) */
-@media screen and (max-width: 30rem) {
-  /* 480px in rem units */
-  .header {
+.header-brand-text {
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Hamburger — mobile & tablet */
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(245, 178, 10, 0.35);
+  border-radius: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-toggle:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #f5b20a;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-toggle.is-active .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.is-active .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-active .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Shared nav link styles */
+.header-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-nav a {
+  display: block;
+  color: #f5b20a;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.85rem 0.75rem;
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.header-nav a:hover,
+.header-nav a:focus-visible {
+  color: #33b5e5;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.header-nav a.is-active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border-left: 3px solid #f5b20a;
+  padding-left: calc(0.75rem - 3px);
+}
+
+.header-nav a.nav-link--cta {
+  background: #f5b20a;
+  color: #1a2b3c;
+  text-align: center;
+  border-left: none;
+  margin-top: 0.5rem;
+}
+
+.header-nav a.nav-link--cta.is-active,
+.header-nav a.nav-link--cta:hover,
+.header-nav a.nav-link--cta:focus-visible {
+  background: #e0a008;
+  color: #1a2b3c;
+}
+
+/* Desktop nav — hidden on mobile */
+.header-nav--desktop {
+  display: none;
+}
+
+/* Mobile slide-out drawer */
+.mobile-nav-panel {
+  display: none;
+}
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.nav-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+@media (max-width: 991px) {
+  .mobile-nav-panel {
+    display: flex;
     flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1002;
+    width: min(320px, 88vw);
+    max-width: 100%;
+    height: 100%;
+    height: 100dvh;
+    background: #074a6a;
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.35);
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow: hidden;
+  }
+
+  .mobile-nav-panel.is-open {
+    transform: translateX(0);
+  }
+
+  .mobile-nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem 0.75rem;
+    padding-top: max(1rem, env(safe-area-inset-top));
+    border-bottom: 1px solid rgba(245, 178, 10, 0.2);
+    flex-shrink: 0;
+  }
+
+  .mobile-nav-title {
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .mobile-nav-close {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #f5b20a;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-nav-close:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .header-nav--mobile {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.75rem 1rem 1.5rem;
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
+
+  .header-nav--mobile a {
+    font-size: 0.9rem;
+    padding: 0.9rem 0.75rem;
+  }
+
+  .header-nav--mobile a.is-active {
+    border-left: 3px solid #f5b20a;
+    padding-left: calc(0.75rem - 3px);
+  }
+
+  .header-nav--mobile a.nav-link--cta {
+    margin-top: 0.75rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    padding: 0.95rem;
+  }
+}
+
+/* Desktop — horizontal nav */
+@media (min-width: 992px) {
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 1.25rem;
+    min-height: 3.5rem;
+  }
+
+  .header-bar {
+    padding: 0;
+    min-height: auto;
+    flex: 0 1 auto;
+  }
+
+  .header-brand {
+    flex: 0 1 auto;
+  }
+
+  .header-brand-text {
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .mobile-nav-panel {
+    display: none !important;
+  }
+
+  .nav-overlay {
+    display: none !important;
+  }
+
+  .header-nav--desktop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.15rem;
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  .header-nav--desktop a {
+    padding: 0.4rem 0.45rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    border-radius: 6px;
+    white-space: nowrap;
+    border-left: none;
+  }
+
+  .header-nav--desktop a.is-active {
+    background: rgba(255, 255, 255, 0.12);
+    border-left: none;
+    padding-left: 0.45rem;
+  }
+
+  .header-nav--desktop a.nav-link--cta {
+    margin-top: 0;
+    margin-left: 0.35rem;
+    padding: 0.45rem 0.85rem;
     text-align: center;
-    padding: 1rem 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .header-nav--desktop {
+    gap: 0.35rem;
   }
 
-  .header ul {
-    flex-direction: column;
+  .header-nav--desktop a {
+    font-size: 0.78rem;
+    padding: 0.5rem 0.65rem;
+    letter-spacing: 0.08em;
   }
 
-  .header ul li {
-    margin-left: 0;
-    margin-bottom: 0.625rem; /* 10px in rem units */
+  .header-nav--desktop a.nav-link--cta {
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
   }
 }

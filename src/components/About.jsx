@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import Seo from "./Seo";
+import { PAGE_SEO } from "./seoConfig";
 import "./styles/about.css";
 import blankImage from "./images/prof.jpeg";
 import dam from "./images/dam.jpg";
@@ -86,29 +87,13 @@ function Reveal({ children, className = "", delay = 0, as: Tag = "div" }) {
 function About() {
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.documentElement.scrollLeft = 0;
+    document.body.scrollLeft = 0;
   }, []);
 
   return (
     <div className="about-page">
-      <Helmet>
-        <title>About Us | निस्वार्थ प्रयास — Farrukhabad NGO</title>
-        <meta
-          name="description"
-          content="Learn about Nishwarthaprayas NGO — our mission, team, values, and social work in Farrukhabad and Kanpur, Uttar Pradesh."
-        />
-        <meta
-          property="og:title"
-          content="About Nishwarthaprayas — NGO in Farrukhabad, Kanpur"
-        />
-        <meta
-          property="og:description"
-          content="A non-profit organization dedicated to equality, education, and community development in Uttar Pradesh."
-        />
-        <meta
-          property="og:image"
-          content="https://farrukhabadngo.com/fevicon.ico"
-        />
-      </Helmet>
+      <Seo {...PAGE_SEO.about} />
 
       {/* Hero */}
       <section className="about-hero">
@@ -192,10 +177,9 @@ function About() {
           <h2>हमारी यात्रा</h2>
         </Reveal>
         <div className="about-timeline">
-          {NGO_TIMELINE.map((item, i) => (
-            <Reveal
+          {NGO_TIMELINE.map((item) => (
+            <div
               key={item.year}
-              delay={i * 80}
               className={`about-timeline-item ${item.highlight ? "about-timeline-item--highlight" : ""}`}
             >
               <div className="about-timeline-marker">
@@ -205,7 +189,7 @@ function About() {
                 <span className="about-timeline-year">{item.year}</span>
                 <p>{item.text}</p>
               </div>
-            </Reveal>
+            </div>
           ))}
         </div>
       </section>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import Seo from "./Seo";
+import { PAGE_SEO } from "./seoConfig";
 import bg from "./images/bg.jpg";
 import "./styles/newsblog.css";
 import config from "./config";
@@ -123,13 +124,7 @@ function NewsBlog() {
 
   return (
     <div className="news-page">
-      <Helmet>
-        <title>Latest News & Updates | निस्वार्थ प्रयास</title>
-        <meta
-          name="description"
-          content="Latest NGO news, social work updates, and community initiatives from Nishwarthaprayas, Farrukhabad."
-        />
-      </Helmet>
+      <Seo {...PAGE_SEO.news} />
 
       {/* Hero */}
       <section className="news-hero">

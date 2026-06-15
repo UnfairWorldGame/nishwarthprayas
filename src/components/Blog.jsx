@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import Seo from "./Seo";
+import { PAGE_SEO } from "./seoConfig";
 import "./styles/blog.css";
 import {
   blogArticles,
@@ -37,21 +38,7 @@ function Blog() {
 
   return (
     <div className="blog-page">
-      <Helmet>
-        <title>NGO Blog & Guides | निस्वार्थ प्रयास</title>
-        <meta
-          name="description"
-          content="Answers to common NGO questions in India — registration, funding, joining, authenticity checks, and legal requirements. A resource guide by Nishwarthaprayas."
-        />
-        <meta
-          property="og:title"
-          content="NGO Questions & Guides — Nishwarthaprayas Blog"
-        />
-        <meta
-          property="og:description"
-          content="Learn how to start, register, join, and fund NGOs in India with our comprehensive Q&A guide."
-        />
-      </Helmet>
+      <Seo {...PAGE_SEO.blog} />
 
       {/* Hero */}
       <section className="blog-hero">

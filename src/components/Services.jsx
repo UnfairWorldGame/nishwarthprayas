@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import Seo from "./Seo";
+import { PAGE_SEO } from "./seoConfig";
 import "./styles/services.css";
 import config from "./config";
 import { useInView } from "./hooks/useInView";
@@ -184,22 +185,7 @@ function Services() {
 
   return (
     <div className="services-page">
-      <Helmet>
-        <title>NGO Work & Services | निस्वार्थ प्रयास</title>
-        <meta
-          name="description"
-          content="Explore Nishwarthaprayas NGO services — free coaching, disaster relief, women empowerment, rural development, and community programs in Farrukhabad and Kanpur."
-        />
-        <meta
-          property="og:title"
-          content="Nishwarthaprayas NGO Services — Farrukhabad & Kanpur"
-        />
-        <meta
-          property="og:description"
-          content="Food distribution, clothing aid, free coaching, awareness campaigns, and rural development by Nishwarthaprayas NGO."
-        />
-        <meta property="og:image" content="https://farrukhabadngo.com/fevicon.ico" />
-      </Helmet>
+      <Seo {...PAGE_SEO.services} />
 
       {/* Hero */}
       <section className="services-hero">

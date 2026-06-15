@@ -6,8 +6,8 @@ import im1 from "./SliderImages/im1.jpg";
 import im2 from "./SliderImages/im2.jpg";
 import im3 from "./SliderImages/im3.jpg";
 import im4 from "./SliderImages/im4.jpg";
-import { Helmet } from "react-helmet";
 import "./styles/slider.css";
+
 const Coachingslider = () => {
   const sliderRef = useRef(null);
 
@@ -50,25 +50,6 @@ const Coachingslider = () => {
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-200">
-      <Helmet>
-        <title>निस्वार्थ प्रयास | एक कदम मानवता की ओर</title>
-        <meta
-          name="description"
-          content="Ngo in farrukhabad,ngo in kanpur,ngo in uttarpradesh,farrukhabad ngo, ngo in UP, ngo"
-        />
-        <meta
-          property="og:title"
-          content="NiswarthPrays: Helping the needy in Farrukhabad and Kanpur Ngo in farrukhabad kanpur,farrukhabad ngo in uttarpradesh ngo in UP ngo"
-        />
-        <meta
-          property="og:description"
-          content="NiswarthPrays is a non-profit organization that provides food, shelter, and education to the needy in Farrukhabad and Kanpur, India.Ngo in farrukhabad kanpur,farrukhabad ngo in uttarpradesh ngo in UP ngo"
-        />
-        <meta
-          property="og:image"
-          content="https://farrukhabadngo.com/fevicon.ico"
-        />
-      </Helmet>
       <div className="max-w-lg w-full relative">
         <Slider {...settings} ref={sliderRef}>
           {photos.map((photo, index) => (

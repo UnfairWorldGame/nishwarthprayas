@@ -1,6 +1,6 @@
 // App.js
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import About from "./components/About";
 import Contact from "./components/Contact";
@@ -17,6 +17,7 @@ import NgoFamily from "./components/NgoFamily";
 import NewsBlog from "./components/NewsBlog";
 import Chatbot from "./components/Chatbot";
 import Blog from "./components/Blog";
+import Donate from "./components/Donate";
 
 function App() {
   return (
@@ -27,7 +28,6 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/india-ngo-contact" element={<Contact />} />
         <Route path="/india-ngo-about" element={<About />} />
-        {/* <Route path="/india-repairtechies-services" element={<Services />} /> */}
         <Route path="/online-tech-services" element={<Services />} />
         <Route path="/online-connectus" element={<Connectus />} />
         <Route path="/admin-page-login" element={<Adminpage />} />
@@ -45,6 +45,12 @@ function App() {
         <Route path="/ngo-latest-news-blog" element={<NewsBlog />} />
         <Route path="/ngo-ai-chat-bot" element={<Chatbot />} />
         <Route path="/ngo-blog" element={<Blog />} />
+        <Route path="/ngo-donate" element={<Donate />} />
+
+        {/* Legacy URL redirects → keep old bookmarks working */}
+        <Route path="/india-repairtechies-services" element={<Navigate to="/ngo-service-page" replace />} />
+        <Route path="/online-mobile-repair" element={<Navigate to="/ngo-service-page" replace />} />
+        <Route path="/online-laptop-repair" element={<Navigate to="/ngo-service-page" replace />} />
 
         <Route path="*" element={<Page404 />} />
         </Routes>

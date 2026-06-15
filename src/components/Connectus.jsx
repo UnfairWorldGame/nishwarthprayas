@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import Seo from "./Seo";
+import { PAGE_SEO } from "./seoConfig";
 import "./styles/connectus.css";
 import whatsappIcon from "./images/whatsapplogo.png";
 import g9 from "./images/g9.jpeg";
@@ -126,6 +127,8 @@ function Connectus() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.documentElement.scrollLeft = 0;
+    document.body.scrollLeft = 0;
   }, []);
 
   const scrollToForm = useCallback((selectedInterest) => {
@@ -168,13 +171,7 @@ function Connectus() {
 
   return (
     <div className="join-page">
-      <Helmet>
-        <title>Join Us | निस्वार्थ प्रयास — Volunteer & Connect</title>
-        <meta
-          name="description"
-          content="Join Nishwarthaprayas NGO as a volunteer, donor, or partner in Farrukhabad and Kanpur, Uttar Pradesh."
-        />
-      </Helmet>
+      <Seo {...PAGE_SEO.connect} />
 
       {/* Hero */}
       <section className="join-hero">
